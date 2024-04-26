@@ -23,29 +23,19 @@ func (t *TemplateRegistry) Render(w io.Writer, name string, data interface{}, c 
 	return tmpl.ExecuteTemplate(w, "base.html", data)
 }
 
-func createTemplate(templs ...string) *template.Template {
-	if len(templs) == 1 {
-		return template.Must(template.ParseGlob("../templates/" + templs[0] + ".html"))
-	}
+func createTemplate(templ string, base string) *template.Template {
 
-	return template.Must(template.ParseFiles("../templates/"+templs[0]+".html", "../templates/"+templs[1]+".html"))
-
-	// var str string
-
-	// for _, tmpl := range templs {
-	// 	str += "../templates/" + tmpl + ".html, "
-	// }
-
-	// return template.Must(template.ParseFiles(...strings.Split(s, ",")))
+	return template.Must(template.ParseFiles("../templates/"+templ+".html", "../templates/"+base+".html"))
 }
 
 func ListTemplates() map[string]*template.Template {
 	templates := make(map[string]*template.Template)
 
 	templates["home"] = createTemplate("home", "base")
-	templates["battle"] = createTemplate("battle", "base")
 	templates["profile"] = createTemplate("profile/profile", "base")
 	templates["editprofile"] = createTemplate("profile/editprofile", "base")
+	templates["get"] = createTemplate("get", "base")
+	templates["post"] = createTemplate("post", "base")
 
 	return templates
 }

@@ -1,0 +1,12 @@
+{{define "title"}}
+  {{index .Name}}
+{{end}}
+
+{{ block "body" . }}
+<form hx-post="/post" hx-target="this" hx-swap="outerHTML">
+  Mensagem: {{ .Msg }}
+    <label>Username</label>
+    <input type="text" name="msg" value="{{ .Msg }}">
+    <button class="btn">Submit</button>
+</form>
+{{end}}

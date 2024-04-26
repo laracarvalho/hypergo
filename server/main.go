@@ -10,6 +10,8 @@ import (
 func main() {
 	e := echo.New()
 
+	StartDB()
+
 	e.Renderer = &TemplateRegistry{
 		templates: ListTemplates(),
 	}
@@ -21,6 +23,9 @@ func main() {
 	e.GET("/profile", ProfileHandler)
 	e.GET("/profile/edit", EditingProfileHandler)
 	e.PUT("/profile", UpdateProfileHandler)
+	e.GET("/get", GetHandler)
+	e.POST("/post", PostHandler)
+	//e.GET("/get", GetHandler)
 
 	port := os.Getenv("PORT")
 	if port == "" {

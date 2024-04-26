@@ -1,0 +1,9 @@
+{{define "title"}}
+  {{index .Name}}
+{{end}}
+
+{{ block "body" . }}
+  <p class="text-gray-600 text-center mb-8">
+  Thanks, {{ .Msg }}, for subscribing to ThePrimeagen and HTMX updates
+  </p>
+{{ end }}
